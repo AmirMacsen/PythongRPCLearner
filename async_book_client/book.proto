@@ -23,6 +23,7 @@ message Book {
   string publish_date = 6;
   // 标签 朝花夕拾: 32 活着：40
   map<string, int32> tags = 7;
+  // 可选的字段，从下面两个中任选一个字段
   oneof book_info {
     string book_url = 8;
     string book_file = 9;

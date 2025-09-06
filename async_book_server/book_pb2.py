@@ -24,21 +24,25 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nbook.proto\"z\n\x04\x42ook\x12\n\n\x02id\x18\x01 \x01(\x05\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12\x1c\n\tbook_type\x18\x05 \x01(\x0e\x32\t.BookType\x12\x14\n\x0cpublish_date\x18\x06 \x01(\t\".\n\x0b\x42ookRequest\x12\x0c\n\x04page\x18\x01 \x01(\x05\x12\x11\n\tpage_size\x18\x02 \x01(\x05\"(\n\x10\x42ookListResponse\x12\x14\n\x05\x62ooks\x18\x01 \x03(\x0b\x32\x05.Book*\x9b\x01\n\x08\x42ookType\x12\t\n\x05STORY\x10\x00\x12\x0b\n\x07SCIENCE\x10\x01\x12\x0e\n\nTECHNOLOGY\x10\x02\x12\x0b\n\x07HISTORY\x10\x03\x12\x0e\n\nPHILOSOPHY\x10\x04\x12\t\n\x05MUSIC\x10\x05\x12\x0f\n\x0bPHOTOGRAPHY\x10\x06\x12\x07\n\x03\x41RT\x10\x07\x12\r\n\tBIOGRAPHY\x10\x08\x12\x0b\n\x07\x46ICTION\x10\t\x12\t\n\x05GUIDE\x10\n26\n\x0b\x42ookService\x12\'\n\x04List\x12\x0c.BookRequest\x1a\x11.BookListResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nbook.proto\"\xfc\x01\n\x04\x42ook\x12\n\n\x02id\x18\x01 \x01(\x05\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12\x1c\n\tbook_type\x18\x05 \x01(\x0e\x32\t.BookType\x12\x14\n\x0cpublish_date\x18\x06 \x01(\t\x12\x1d\n\x04tags\x18\x07 \x03(\x0b\x32\x0f.Book.TagsEntry\x12\x12\n\x08\x62ook_url\x18\x08 \x01(\tH\x00\x12\x13\n\tbook_file\x18\t \x01(\tH\x00\x1a+\n\tTagsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\x42\x0b\n\tbook_info\".\n\x0b\x42ookRequest\x12\x0c\n\x04page\x18\x01 \x01(\x05\x12\x11\n\tpage_size\x18\x02 \x01(\x05\"(\n\x10\x42ookListResponse\x12\x14\n\x05\x62ooks\x18\x01 \x03(\x0b\x32\x05.Book*\x9b\x01\n\x08\x42ookType\x12\t\n\x05STORY\x10\x00\x12\x0b\n\x07SCIENCE\x10\x01\x12\x0e\n\nTECHNOLOGY\x10\x02\x12\x0b\n\x07HISTORY\x10\x03\x12\x0e\n\nPHILOSOPHY\x10\x04\x12\t\n\x05MUSIC\x10\x05\x12\x0f\n\x0bPHOTOGRAPHY\x10\x06\x12\x07\n\x03\x41RT\x10\x07\x12\r\n\tBIOGRAPHY\x10\x08\x12\x0b\n\x07\x46ICTION\x10\t\x12\t\n\x05GUIDE\x10\n26\n\x0b\x42ookService\x12\'\n\x04List\x12\x0c.BookRequest\x1a\x11.BookListResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'book_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_BOOKTYPE']._serialized_start=229
-  _globals['_BOOKTYPE']._serialized_end=384
-  _globals['_BOOK']._serialized_start=14
-  _globals['_BOOK']._serialized_end=136
-  _globals['_BOOKREQUEST']._serialized_start=138
-  _globals['_BOOKREQUEST']._serialized_end=184
-  _globals['_BOOKLISTRESPONSE']._serialized_start=186
-  _globals['_BOOKLISTRESPONSE']._serialized_end=226
-  _globals['_BOOKSERVICE']._serialized_start=386
-  _globals['_BOOKSERVICE']._serialized_end=440
+  _globals['_BOOK_TAGSENTRY']._loaded_options = None
+  _globals['_BOOK_TAGSENTRY']._serialized_options = b'8\001'
+  _globals['_BOOKTYPE']._serialized_start=360
+  _globals['_BOOKTYPE']._serialized_end=515
+  _globals['_BOOK']._serialized_start=15
+  _globals['_BOOK']._serialized_end=267
+  _globals['_BOOK_TAGSENTRY']._serialized_start=211
+  _globals['_BOOK_TAGSENTRY']._serialized_end=254
+  _globals['_BOOKREQUEST']._serialized_start=269
+  _globals['_BOOKREQUEST']._serialized_end=315
+  _globals['_BOOKLISTRESPONSE']._serialized_start=317
+  _globals['_BOOKLISTRESPONSE']._serialized_end=357
+  _globals['_BOOKSERVICE']._serialized_start=517
+  _globals['_BOOKSERVICE']._serialized_end=571
 # @@protoc_insertion_point(module_scope)

@@ -33,20 +33,33 @@ FICTION: BookType
 GUIDE: BookType
 
 class Book(_message.Message):
-    __slots__ = ("id", "title", "author", "description", "book_type", "publish_date")
+    __slots__ = ("id", "title", "author", "description", "book_type", "publish_date", "tags", "book_url", "book_file")
+    class TagsEntry(_message.Message):
+        __slots__ = ("key", "value")
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: str
+        value: int
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[int] = ...) -> None: ...
     ID_FIELD_NUMBER: _ClassVar[int]
     TITLE_FIELD_NUMBER: _ClassVar[int]
     AUTHOR_FIELD_NUMBER: _ClassVar[int]
     DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
     BOOK_TYPE_FIELD_NUMBER: _ClassVar[int]
     PUBLISH_DATE_FIELD_NUMBER: _ClassVar[int]
+    TAGS_FIELD_NUMBER: _ClassVar[int]
+    BOOK_URL_FIELD_NUMBER: _ClassVar[int]
+    BOOK_FILE_FIELD_NUMBER: _ClassVar[int]
     id: int
     title: str
     author: str
     description: str
     book_type: BookType
     publish_date: str
-    def __init__(self, id: _Optional[int] = ..., title: _Optional[str] = ..., author: _Optional[str] = ..., description: _Optional[str] = ..., book_type: _Optional[_Union[BookType, str]] = ..., publish_date: _Optional[str] = ...) -> None: ...
+    tags: _containers.ScalarMap[str, int]
+    book_url: str
+    book_file: str
+    def __init__(self, id: _Optional[int] = ..., title: _Optional[str] = ..., author: _Optional[str] = ..., description: _Optional[str] = ..., book_type: _Optional[_Union[BookType, str]] = ..., publish_date: _Optional[str] = ..., tags: _Optional[_Mapping[str, int]] = ..., book_url: _Optional[str] = ..., book_file: _Optional[str] = ...) -> None: ...
 
 class BookRequest(_message.Message):
     __slots__ = ("page", "page_size")

@@ -19,7 +19,9 @@ class BookService(book_pb2_grpc.BookServiceServicer):
                 author="Author %d" % i,
                 description="Description %d" % i,
                 book_type=book_pb2.BookType.ART,
-                publish_date=datetime.datetime.now().strftime("%Y-%m-%d")
+                publish_date=datetime.datetime.now().strftime("%Y-%m-%d"),
+                tags={"java": 1, "python": 2},
+                book_url="https://www.google.com",
             ))
 
         response = book_pb2.BookListResponse(books=books)
