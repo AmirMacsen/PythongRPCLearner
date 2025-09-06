@@ -1,0 +1,43 @@
+syntax="proto3";
+
+enum BookType {
+    STORY = 0;
+    SCIENCE = 1;
+    TECHNOLOGY = 2;
+    HISTORY = 3;
+    PHILOSOPHY = 4;
+    MUSIC = 5;
+    PHOTOGRAPHY = 6;
+    ART = 7;
+    BIOGRAPHY = 8;
+    FICTION = 9;
+    GUIDE = 10;
+}
+
+message Book {
+  int32 id = 1;
+  string title = 2;
+  string author = 3;
+  string description = 4;
+  BookType book_type = 5;
+  string publish_date = 6;
+  // 标签 朝花夕拾: 32 活着：40
+  map<string, int32> tags = 7;
+  // 可选的字段，从下面两个中任选一个字段
+  oneof book_info {
+    string book_url = 8;
+    string book_file = 9;
+  }
+}
+
+
+message BookRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+message BookListResponse {
+  repeated Book books = 1;
+}
+service BookService {
+  rpc List(BookRequest) returns (BookListResponse);
+}
