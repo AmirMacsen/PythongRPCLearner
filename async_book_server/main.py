@@ -1,7 +1,10 @@
 import asyncio
 import datetime
+from importlib.metadata import metadata
+from typing import Callable, Any
 
 import grpc
+import grpc_interceptor
 
 from async_book_server import book_pb2, book_pb2_grpc
 
@@ -44,6 +47,19 @@ class AuthenticateInterceptor(grpc.aio.ServerInterceptor):
             )
 
 
+class InterceptorPlugin(grpc_interceptor.AsyncServerInterceptor):
+    async def intercept(self,  method: Callable,
+        request_or_iterator: Any,
+        context: grpc.aio.ServicerContext,
+        method_name: str):
+        metadata = dict(context.invocation_metadata())
+        token = metadata.get("token", "")
+
+        if token == "xxxxxxxxxxxxxxxxxxxxx":
+            print("interceptor 获取到了元数据")
+        return method(request_or_iterator, context)
+
+
 class BookService(book_pb2_grpc.BookServiceServicer):
     def List(self, request, context):
         page = request.page
@@ -78,7 +94,7 @@ class BookService(book_pb2_grpc.BookServiceServicer):
         return response
 
 async def main():
-    server = grpc.aio.server(interceptors=[BookServiceInterceptor(), BookServiceInterceptor2(), AuthenticateInterceptor()])
+    server = grpc.aio.server(interceptors=[ InterceptorPlugin()])
     book_pb2_grpc.add_BookServiceServicer_to_server(BookService(), server)
     server.add_insecure_port('localhost:50051')
     await server.start()

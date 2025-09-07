@@ -6,6 +6,7 @@ requires-python = ">=3.13"
 dependencies = [
     "daphne>=4.2.1",
     "django>=5.2.6",
+    "grpc-interceptor>=0.15.4",
     "grpcio>=1.74.0",
     "grpcio-tools>=1.74.0",
 ]

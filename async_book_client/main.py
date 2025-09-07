@@ -21,7 +21,7 @@ async def main():
                 page=1, page_size=10
             ),
             metadata=(
-                ("token", "xxxxxxxxxxxxxxxxxxxxx1"),
+                ("token", "xxxxxxxxxxxxxxxxxxxxx"),
             )
         )
 
