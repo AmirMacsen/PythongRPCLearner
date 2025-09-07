@@ -25,6 +25,24 @@ class BookServiceInterceptor2(grpc.aio.ServerInterceptor):
         print("离开第二个拦截器...")
         return next_handler
 
+class AuthenticateInterceptor(grpc.aio.ServerInterceptor):
+    async def intercept_service(self, continuation, handler_call_details):
+        print("进入权限拦截器...")
+        print()
+        # 获取元数据 token
+        token = dict(handler_call_details.invocation_metadata).get("token", "")
+        if token and token == "xxxxxxxxxxxxxxxxxxxxx":
+                return await continuation(handler_call_details)
+        else:
+            # 需要中断请求，并返回消息
+            def method_handler(request, context):
+                context.set_code(grpc.StatusCode.UNAUTHENTICATED)
+                context.set_details("Invalid token")
+                return
+            return grpc.unary_unary_rpc_method_handler(
+                method_handler
+            )
+
 
 class BookService(book_pb2_grpc.BookServiceServicer):
     def List(self, request, context):
@@ -60,7 +78,7 @@ class BookService(book_pb2_grpc.BookServiceServicer):
         return response
 
 async def main():
-    server = grpc.aio.server(interceptors=[BookServiceInterceptor(), BookServiceInterceptor2()])
+    server = grpc.aio.server(interceptors=[BookServiceInterceptor(), BookServiceInterceptor2(), AuthenticateInterceptor()])
     book_pb2_grpc.add_BookServiceServicer_to_server(BookService(), server)
     server.add_insecure_port('localhost:50051')
     await server.start()
